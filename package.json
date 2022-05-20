@@ -1,0 +1,36 @@
+{
+  "name": "game_32feel_32example",
+  "main": "main.js",
+  "productName": "Game Feel Example",
+  "description": "Game Feel Example",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "electron .",
+    "pack": "build --dir",
+    "dist": "electron-builder"
+    },
+    "author":"rootkit",
+    "license":"MIT",
+
+
+  "build": {
+
+    "appId": "cmyapp",
+    "asar":true,
+    
+    "win": {
+      "target":"NSIS",
+      "icon":"buid/icon.ico"
+
+    }
+
+  
+
+  },
+
+
+  "devDependencies": {
+    "electron": "8.2.5",
+    "electron-builder": "^22.14.13"
+  }
+}
