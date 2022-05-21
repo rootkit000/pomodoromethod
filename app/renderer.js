@@ -1,13 +1,3 @@
-function comenzarpomodoro() {
-  let m = 25;
-  let s = 50;
-  m = checkTime(m);
-  s = checkTime(s);
-  document.getElementById('txt').innerHTML =  h + ":" + m + ":" + s;
-  setTimeout(startTime, 1000);
-}
-
-
 
 
 
@@ -44,3 +34,5 @@ new Notification(NOTIFICATION_TITLE, { body: NOTIFICATION_BODY })
 
 
 }
+
+

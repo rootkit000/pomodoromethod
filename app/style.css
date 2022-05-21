@@ -67,7 +67,7 @@ main {
     border-width: 0 0 0 10px;
 }
 
-..running {
+.running {
     background-color: #fff;
     height: 10px;
     width: 10px;
