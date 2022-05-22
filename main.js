@@ -3,7 +3,12 @@
  * running in Electron Runtime.
  */
 // Modules to control application life and create native browser window
+
+
+
 const { app, BrowserWindow, shell, Menu } = require("electron");
+
+
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -12,15 +17,19 @@ let mainWindow = null;
 function createWindow() {
   // Create the browser window.
   mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
+    kiosk:false,
+    skipTaskbar :true,
+    resizable:false,
+    width: 500,
+    height: 480,
     useContentSize: true,
-    title: "Expanded P2P Networking Example",
-    backgroundColor: '#000000',
+    title: "Metodo de Pomodoro",
+    backgroundColor: 'white',
     webPreferences: {
       nodeIntegration: true,
     }
   });
+
 
   // Open external link in the OS default browser
   mainWindow.webContents.on("new-window", function(e, url) {

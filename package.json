@@ -1,8 +1,8 @@
 {
-  "name": "game_32feel_32example",
+  "name": "PomodoroTimer",
   "main": "main.js",
-  "productName": "Game Feel Example",
-  "description": "Game Feel Example",
+  "productName": "Pomodoro method",
+  "description": "app to timing pomodoros",
   "version": "1.0.0",
   "scripts": {
     "start": "electron .",

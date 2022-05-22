@@ -25,12 +25,17 @@ const playPause = () => {
 
 
  function startpomodoro() {
+   
+
+stateActive()
+cicleAdd()
+ document.getElementById("output").innerText = state +" "+ciclo 
 
 secondsSphere.style.animation = 'rotacion 60s linear infinite';
  if (check == null) {
-                var min =0;
+                var min =TimePomodoro;
                 
-                var sec = 2;
+                var sec = 10;
 
 
                 check = setInterval(function () {
@@ -44,6 +49,7 @@ secondsSphere.style.animation = 'rotacion 60s linear infinite';
 
 
                 if (min <= 0 && sec <= 0) {
+          
             PomodoroFinalizado()
            clearInterval(check);
             check = null;
@@ -54,7 +60,27 @@ startrest()
             
         }
    
+ if (min <10 && sec < 10 ) {
+                   document.getElementById("time").innerHTML = "0"+min+":0"+sec;
+     
+ }
+
+ if (min <10 && sec > 9 ) {
+                   document.getElementById("time").innerHTML = "0"+min+":"+sec;
+     
+ }
+
+ if (min > 9 && sec < 10 ) {
+                   document.getElementById("time").innerHTML = min+":0"+sec;
+     
+ }
+
+
+ if (min > 9 && sec > 9 ) {
                     document.getElementById("time").innerHTML = min+":"+sec;
+     
+ }
+    
                 }, 1000);
             }
         }
@@ -64,12 +90,16 @@ startrest()
 
 
  function startrest() {
+    cicleRest()
+    stateRest()
+    document.getElementById("output").innerText = state 
 
 secondsSphere.style.animation = 'rotacion 60s linear infinite';
  if (check == null) {
-                 min =5;
+
+                 min =0;
                 
-                 sec = 0;
+                 sec = TimeRest;
 
 
                 check = setInterval(function () {
@@ -83,17 +113,36 @@ secondsSphere.style.animation = 'rotacion 60s linear infinite';
 
 
                 if (min <= 0 && sec <= 0) {
-            PomodoroFinalizado()
+            DescanzoFinalizado()
             clearInterval(check);
             check = null;
             document.getElementById("time").innerHTML = '0';
               secondsSphere.style.transform = 'rotate(-90deg) translateX(60px)';
     secondsSphere.style.animation = 'none';
-    playPauseButton.classList.remove('running');
+    startpomodoro()
 
         }
    
+ if (min <10 && sec < 10 ) {
+                   document.getElementById("time").innerHTML = "0"+min+":0"+sec;
+     
+ }
+
+ if (min <10 && sec > 9 ) {
+                   document.getElementById("time").innerHTML = "0"+min+":"+sec;
+     
+ }
+
+ if (min > 9 && sec < 10 ) {
+                   document.getElementById("time").innerHTML = min+":0"+sec;
+     
+ }
+
+
+ if (min > 9 && sec > 9 ) {
                     document.getElementById("time").innerHTML = min+":"+sec;
+     
+ }
                 }, 1000);
             }
         }
@@ -105,10 +154,13 @@ secondsSphere.style.animation = 'rotacion 60s linear infinite';
 
 
 const stop = () => {
+    stateStop()
     clearInterval(check);
             check = null;
             document.getElementById("time").innerHTML = '00:00';
               secondsSphere.style.transform = 'rotate(-90deg) translateX(60px)';
     secondsSphere.style.animation = 'none';
     playPauseButton.classList.remove('running');
+    ciclo=ciclo-1
+    document.getElementById("output").innerText = state
 }
