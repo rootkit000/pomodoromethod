@@ -1,73 +1,30 @@
-/**
- * This is the file handling the startup and lifetime of the game
- * running in Electron Runtime.
- */
-// Modules to control application life and create native browser window
+const {app, BrowserWindow, ipcMain} = require('electron')
+const path = require('path')
 
-
-
-const { app, BrowserWindow, shell, Menu } = require("electron");
-
-
-
-// Keep a global reference of the window object, if you don't, the window will
-// be closed automatically when the JavaScript object is garbage collected.
-let mainWindow = null;
-
-function createWindow() {
-  // Create the browser window.
-  mainWindow = new BrowserWindow({
-    kiosk:false,
-    skipTaskbar :true,
-    resizable:false,
-    width: 500,
-    height: 480,
-    useContentSize: true,
-    title: "Metodo de Pomodoro",
-    backgroundColor: 'white',
+function createWindow () {
+  const mainWindow = new BrowserWindow({
     webPreferences: {
-      nodeIntegration: true,
+      preload: path.join(__dirname, 'preload.js')
     }
-  });
+  })
 
+  ipcMain.on('set-title', (event, title) => {
+    const webContents = event.sender
+    const win = BrowserWindow.fromWebContents(webContents)
+    win.setTitle(title)
+  })
 
-  // Open external link in the OS default browser
-  mainWindow.webContents.on("new-window", function(e, url) {
-    e.preventDefault();
-    shell.openExternal(url);
-  });
-
-  // and load the index.html of the app.
-  mainWindow.loadFile("app/index.html");
-
-  Menu.setApplicationMenu(null);
-
-  // Open the DevTools.
-  // mainWindow.webContents.openDevTools()
-
-  // Emitted when the window is closed.
-  mainWindow.on("closed", function() {
-    // Dereference the window object, usually you would store windows
-    // in an array if your app supports multi windows, this is the time
-    // when you should delete the corresponding element.
-    mainWindow = null;
-  });
+  mainWindow.loadFile('app/index.html')
 }
 
-// Should be set to true, which will be the default value in future Electron
-// versions, but then causes an issue on Windows where the `fs` module stops	
-// working in the renderer process after a reload.
-// See https://github.com/electron/electron/issues/22119
-// For now, out of caution, disable this as we rely heavily on `fs` in the 
-// renderer process.
-app.allowRendererProcessReuse = false;
+app.whenReady().then(() => {
+  createWindow()
+  
+  app.on('activate', function () {
+    if (BrowserWindow.getAllWindows().length === 0) createWindow()
+  })
+})
 
-// This method will be called when Electron has finished
-// initialization and is ready to create browser windows.
-// Some APIs can only be used after this event occurs.
-app.on("ready", createWindow);
-
-// Quit when all windows are closed.
-app.on("window-all-closed", function() {
-  app.quit();
-});
+app.on('window-all-closed', function () {
+  if (process.platform !== 'darwin') app.quit()
+})
