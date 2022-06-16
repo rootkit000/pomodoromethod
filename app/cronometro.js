@@ -50,7 +50,7 @@ secondsSphere.style.animation = 'rotacion 60s linear infinite';
 
                 if (min <= 0 && sec <= 0) {
           
-            pomocounter += 1 ; counterhtml.innerText="Pomodoros en esta session :"+pomocounter;
+            pomocounter += 1 ; counterhtml.innerText="Pomodoros: \n" +pomocounter;
             PomodoroFinalizado()
            clearInterval(check);
             check = null;
