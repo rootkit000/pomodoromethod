@@ -33,9 +33,9 @@ cicleAdd()
 
 secondsSphere.style.animation = 'rotacion 60s linear infinite';
  if (check == null) {
-                var min =TimePomodoro;
+                var min =0;
                 
-                var sec = 10;
+                var sec = 1;
 
 
                 check = setInterval(function () {
@@ -50,6 +50,7 @@ secondsSphere.style.animation = 'rotacion 60s linear infinite';
 
                 if (min <= 0 && sec <= 0) {
           
+            pomocounter += 1 ; counterhtml.innerText="Pomodoros en esta session :"+pomocounter;
             PomodoroFinalizado()
            clearInterval(check);
             check = null;
@@ -99,7 +100,7 @@ secondsSphere.style.animation = 'rotacion 60s linear infinite';
 
                  min =0;
                 
-                 sec = TimeRest;
+                 sec = 10;
 
 
                 check = setInterval(function () {

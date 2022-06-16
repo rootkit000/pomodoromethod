@@ -4,7 +4,7 @@
     <meta charset="UTF-8"/>
 
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-status-bar-tsyle" content="black-translucent">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
@@ -15,11 +15,16 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100&display=swap" rel="stylesheet">
     <link href="style.css" rel="stylesheet">
+
+    <link href="bootstrap.min.css" rel="stylesheet">
+    <script src="bootstrap.min.js" defer></script>
     <script src="cronometro.js" defer></script>
     <script src="notification.js" defer></script>
     <script src="appState.js" defer></script>
 </head>
-<body>
+<body class="bg-danger">
+
+   <div class="ml-4 alert alert-danger shadow  float-left " id="counterPomo" style="background-color:rgba(625, 125, 125, 0.6); width:22vw; margin-left:2vw; margin-top: 2vh; top:10vh;">Pomodoros en esta session:0</div> 
     <main>
         <div class="circle">
             <div id="time" class="stopwatch">00:00</div>
@@ -30,11 +35,11 @@
         <div id="seconds-sphere" class="seconds-sphere"></div>
     </main>
 <center>
+</div>
     <h1 id="output"> </h1>
-  Title: <input id="title"/>
-    <button id="btn" type="button">Set</button>
+<!--  Title: <input id="title"/>
+    <button id="btn" type="button">Set</button>-->
     <script src="renderer.js"></script>
-    
 </center>
 </body>
 </html>

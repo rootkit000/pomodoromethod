@@ -8,29 +8,22 @@
     "start": "electron .",
     "pack": "build --dir",
     "dist": "electron-builder"
-    },
-    "author":"rootkit",
-    "license":"MIT",
-
-
-  "build": {
-
-    "appId": "cmyapp",
-    "asar":true,
-    
-    "win": {
-      "target":"NSIS",
-      "icon":"buid/icon.ico"
-
-    }
-
-  
-
   },
-
-
+  "author": "rootkit",
+  "license": "MIT",
+  "build": {
+    "appId": "cmyapp",
+    "asar": true,
+    "win": {
+      "target": "NSIS",
+      "icon": "buid/icon.ico"
+    }
+  },
   "devDependencies": {
     "electron": "8.2.5",
     "electron-builder": "^22.14.13"
+  },
+  "dependencies": {
+    "electron-reload": "^2.0.0-alpha.1"
   }
 }
