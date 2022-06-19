@@ -1,29 +1,54 @@
 {
-  "name": "PomodoroTimer",
-  "main": "main.js",
-  "productName": "Pomodoro method",
-  "description": "app to timing pomodoros",
+  "name": "PomodoroMethod",
   "version": "1.0.0",
+  "author": {
+    "name": "Rootkit",
+    "email": "leonardofernandef@outlook.com"
+  },
+  "description": "stay productive while work-Focus and Rest",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/surajrathod/eagluet.git"
+  },
+  "main": "main.js",
   "scripts": {
-    "start": "electron .",
-    "pack": "build --dir",
-    "dist": "electron-builder"
+    "start": " electron-forge start",
+    "package": "electron-forge package",
+    "make": " electron-forge make",
+    "release": "release-it"
   },
-  "author": "rootkit",
   "license": "MIT",
-  "build": {
-    "appId": "cmyapp",
-    "asar": true,
-    "win": {
-      "target": "NSIS",
-      "icon": "buid/icon.ico"
-    }
-  },
   "devDependencies": {
-    "electron": "^19.0.4",
-    "electron-builder": "^22.14.13"
+    "@electron-forge/cli": "^6.0.0-beta.63",
+    "@electron-forge/maker-deb": "^6.0.0-beta.63",
+    "@electron-forge/maker-rpm": "^6.0.0-beta.63",
+    "@electron-forge/maker-squirrel": "^6.0.0-beta.63",
+    "@electron-forge/maker-zip": "^6.0.0-beta.63",
+    "@electron-forge/publisher-github": "^6.0.0-beta.63",
+    "electron": "^18.0.4",
+    "release-it": "^14.14.2",
+    "standard": "^16.0.4"
   },
   "dependencies": {
-    "electron-reload": "^2.0.0-alpha.1"
+    "electron-reload": "^1.5.0",
+    "electron-squirrel-startup": "^1.0.0",
+    "node-notifier": "^10.0.1"
+  },
+  "config": {
+    "forge": "forge.config.js"
+  },
+  "release-it": {
+    "git": {
+      "requireCleanWorkingDir": false
+    },
+    "github": {
+      "release": true,
+      "assets": [
+        "out/make/**/*.exe",
+        "out/make/**/*.nupkg",
+        "out/make/**/*.deb"
+      ]
+    },
+    "npm": false
   }
 }

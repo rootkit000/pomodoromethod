@@ -2,13 +2,20 @@ const {app, BrowserWindow, ipcMain,shell,Menu, Tray} = require('electron')
 const path = require('path')
 const iconpath =path.join(__dirname,'build/icon.ico')
 let mainWindow=null
+let secondWindow=null
 let appIcon = null
 // app is in development
 if (!app.isPackaged) {
 	require("electron-reload")(__dirname);
+}else{
+	Menu.setApplicationMenu(null);
 }
 
  function createWindow () {
+
+
+
+if (!app.isPackaged) {
 	 mainWindow = new BrowserWindow({
 		
 //    kiosk:true,
@@ -20,8 +27,8 @@ if (!app.isPackaged) {
 			show :true,
 			darkTheme: true, 
 			transparent:false,
-//    frame:false ,
-//    closable : false,
+ // frame:false ,
+ //   closable : false,
 			maximizable :false,
 	 // autoHideMenuBar :true,
 		webPreferences: {
@@ -30,32 +37,92 @@ if (!app.isPackaged) {
 			 }
 	})
 
+}
+else
+{
+	 mainWindow = new BrowserWindow({
+		
+//    kiosk:true,
+//    fullscreen :true,
+//    alwaysOnTop:true,
+			resizable:false,
+			movable: true,
+   		skipTaskbar: true,
+			show :true,
+			darkTheme: true, 
+			transparent:false,
+			 frame:false ,
+ //   closable : false,
+			maximizable :false,
+	  autoHideMenuBar :true,
+		webPreferences: {
+		 
+			preload: path.join(__dirname, 'preload.js')
+			 }
+	})
+
+}
 
 
-
-	ipcMain.on('set-title', (event, title) => {
-		const webContents = event.sender
+	ipcMain.on('set-title', () => {
+		/*const webContents = event.sender
 		const win = BrowserWindow.fromWebContents(webContents)
 		win.setTitle(title)
-		mainWindow.hide()
+	*/	mainWindow.hide()
 	})
 	mainWindow.loadFile('app/index.html')
 }
 
-//Menu.setApplicationMenu(null);
+//
 
 
+
+function CreateSecondWindow() {
+  secondWindow = new BrowserWindow(getBrowserOptions);
+  secondWindow.loadURL(
+    path.join("file://", __dirname, "/app/overlayscreen.html")
+  );
+  secondWindow.maximize();
+
+
+
+}
+ipcMain.on("Pomo-finished", function (event) {
+
+ 	if (BrowserWindow.getAllWindows().length === 1) CreateSecondWindow();
+  secondWindow.once("ready-to-show", () => {
+    secondWindow.show();
+  });
+});
+
+
+ipcMain.on("break-finished", function () {
+
+  secondWindow.once("ready-to-show", () => {
+    secondWindow.hide();
+    mainWindow.show();
+  });
+});
+
+function getBrowserOptions() {
+  return {
+    frame: false,
+    transparent: true,
+    alwaysOnTop: true,
+    resizable: false,
+    show: false,
+    webPreferences: { nodeIntegration: true, contextIsolation: false },
+  };
+}
 
 app.whenReady().then(() => {
 	appIcon = new Tray(iconpath)
 
 
 
-
 	const contextMenu = Menu.buildFromTemplate([
-		{ label: 'mostrar', type: 'radio' ,click: ()=> mainWindow.show()},
-		{ label: 'ocultar', type: 'radio' ,click: ()=> mainWindow.hide()},
-		{ label: 'cerrar', type: 'radio' , click: ()=> app.quit()
+		{ label: 'Abrir', type: 'radio' ,click: ()=> mainWindow.show()},
+		{ label: 'Cerrar', type: 'radio' , click: ()=> app.quit()
 
 
 

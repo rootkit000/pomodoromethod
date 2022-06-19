@@ -18,12 +18,12 @@
 
     <link href="bootstrap.min.css" rel="stylesheet">
     <script src="bootstrap.min.js" defer></script>
-    <script src="cronometro.js" defer></script>
     <script src="notification.js" defer></script>
     <script src="appState.js" defer></script>
 </head>
 <body class="bg-danger">
-
+<button id="btn" class="float-rigth  border-0 position-absolute  end-0" style="background-color:rgba(625, 125, 125, 0.6); width:5vw;  top:-2vh;" type="button">-</button>
+    
    <div class="ml-4  shadow border-secondary rounded-end float-left border-start-0 p-1" id="counterPomo" style="background-color:rgba(625, 125, 125, 0.6); width:15vw; margin-left:0vw; margin-top: 2vh; top:20vh;">Pomodoros:0</div> 
     <main>
         <div class="circle">
@@ -38,7 +38,6 @@
 </div>
     <h1 id="output"> </h1>
   Title: <input id="title"/>
-    <button id="btn" type="button">Set</button>
     <script src="renderer.js"></script>
 </center>
 </body>
