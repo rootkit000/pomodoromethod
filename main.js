@@ -149,7 +149,7 @@ app.whenReady().then(() => {
 
 	// Call this again for Linux because we modified the context menu
 	appIcon.setContextMenu(contextMenu)
-	appIcon.setToolTip('This is my application.')
+	appIcon.setToolTip('Pomomethod.')
 
 
 })
