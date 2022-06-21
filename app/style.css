@@ -105,3 +105,11 @@
  font-family: 'clock', monospace;
        
 }
+
+#btn{ 
+ background-color:rgba(625, 125, 125, 0.0);   width:5vw;  top:-2vh;       
+}
+#btn:hover{
+background-color:rgba(625, 125, 125, 0.6); width:5vw;  top:-2vh;  
+transition: 1s;     
+}

@@ -5,16 +5,16 @@ const counterhtml = document.getElementById('counterPomo')
 var pomocounter = null;
 
 
-var state = "detenido";
-function stateActive(){state = "pomodoro"}
-function stateRest(){state = "descanzo "}
-function stateStop(){state = "detenido"}
+var state = "Ningun pomodoro iniciado";
+function stateActive(){state = "Corriendo pomodoro"}
+function stateRest(){state = "Tomate un descanzo"}
+function stateStop(){state = "Detenido"}
 
 
 
 
 // contador de pomodoros
-const TimePomodoro=0;
+const TimePomodoro=24;
 var TimeRest=5;
 
 var ciclo = 0;

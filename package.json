@@ -5,10 +5,10 @@
     "name": "Rootkit",
     "email": "leonardofernandef@outlook.com"
   },
-  "description": "stay productive while work-Focus and Rest",
+  "description": "Usa el metodo de pomodoro en tus actividades",
   "repository": {
     "type": "git",
-    "url": "https://github.com/surajrathod/eagluet.git"
+    "url": "https://github.com/rootkit000/pomodoromethod"
   },
   "main": "main.js",
   "scripts": {

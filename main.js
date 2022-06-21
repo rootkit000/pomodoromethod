@@ -4,7 +4,15 @@ const iconpath =path.join(__dirname,'build/icon.ico')
 let mainWindow=null
 let secondWindow=null
 let appIcon = null
-// app is in development
+
+if (require("electron-squirrel-startup")) {
+  // eslint-disable-line global-require
+  app.quit();
+}// app is in development
+
+
+app.allowRendererProcessReuse = true;
+
 if (!app.isPackaged) {
 	require("electron-reload")(__dirname);
 }else{
@@ -18,12 +26,12 @@ if (!app.isPackaged) {
 if (!app.isPackaged) {
 	 mainWindow = new BrowserWindow({
 		
-//    kiosk:true,
+ //   kiosk:true,
 //    fullscreen :true,
-//    alwaysOnTop:true,
+	    alwaysOnTop:true,
 			resizable:false,
     	movable: false,
-   		skipTaskbar: true,
+   		skipTaskbar: false,
 			show :true,
 			darkTheme: true, 
 			transparent:false,
@@ -44,7 +52,7 @@ else
 		
 //    kiosk:true,
 //    fullscreen :true,
-//    alwaysOnTop:true,
+	    alwaysOnTop:true,
 			resizable:false,
 			movable: true,
    		skipTaskbar: true,
@@ -87,12 +95,18 @@ function CreateSecondWindow() {
 
 
 }
+
+
+ipcMain.on("Pomo-started", function (event) {
+
+    mainWindow.hide();
+ });
+
+
 ipcMain.on("Pomo-finished", function (event) {
 
- 	if (BrowserWindow.getAllWindows().length === 1) CreateSecondWindow();
-  secondWindow.once("ready-to-show", () => {
-    secondWindow.show();
-  });
+
+    mainWindow.show();
 });
 
 
@@ -191,3 +205,21 @@ ipcMain.on("StartNextRound", function (event) {
 		CurrentRound = 1;
 	}
 });
+
+
+
+
+/*
+ * single Instance of the app
+ */
+const getTheLock = app.requestSingleInstanceLock();
+if (!getTheLock) {
+  app.quit();
+} else {
+  app.on("second-instance", () => {
+    if (mainWindow.isMaximized()) {
+      mainWindow.restore();
+    }
+    mainWindow.focus();
+  });
+}
