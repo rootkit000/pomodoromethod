@@ -1,8 +1,7 @@
-const counterhtml = document.getElementById('counterPomo')
+
 
 // estado de la app
 
-var pomocounter = null;
 
 
 var state = "Ningun pomodoro iniciado";
@@ -14,7 +13,7 @@ function stateStop(){state = "Detenido"}
 
 
 // contador de pomodoros
-const TimePomodoro=24;
+const TimePomodoro=0;
 var TimeRest=5;
 
 var ciclo = 0;

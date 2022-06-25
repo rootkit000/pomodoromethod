@@ -11,7 +11,7 @@ if (require("electron-squirrel-startup")) {
 }// app is in development
 
 
-app.allowRendererProcessReuse = true;
+app.allowRendererProcessReuse = false;
 
 if (!app.isPackaged) {
 	require("electron-reload")(__dirname);
@@ -30,7 +30,7 @@ if (!app.isPackaged) {
 //    fullscreen :true,
 	    alwaysOnTop:true,
 			resizable:false,
-    	movable: false,
+    	movable: true,
    		skipTaskbar: false,
 			show :true,
 			darkTheme: true, 
@@ -55,14 +55,13 @@ else
 	    alwaysOnTop:true,
 			resizable:false,
 			movable: true,
-   		skipTaskbar: true,
+   		skipTaskbar: false,
 			show :true,
 			darkTheme: true, 
 			transparent:false,
 			 frame:false ,
  //   closable : false,
 			maximizable :false,
-	  autoHideMenuBar :true,
 		webPreferences: {
 		 
 			preload: path.join(__dirname, 'preload.js')

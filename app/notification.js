@@ -2,6 +2,9 @@
 and name see in the notifications u need use electron-forge to make the app installer the app
 icon and name don't will show while is not compilled*/
 
+
+
+
 function PomodoroFinalizado() {
 
 

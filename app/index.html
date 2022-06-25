@@ -8,31 +8,108 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
+<link rel="stylesheet" href="boostrap-fonts.css">
 
-
-
- <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<link rel="stylesheet" href="icons.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100&display=swap" rel="stylesheet">
     <link href="style.css" rel="stylesheet">
+    
 
+
+    <script src="jquery.js"></script>
     <link href="bootstrap.min.css" rel="stylesheet">
     <script src="bootstrap.min.js" defer></script>
     <script src="notification.js" defer></script>
     <script src="appState.js" defer></script>
+
+
+<style>
+@import url("boostrap-icons.css");
+
+body {margin:0}
+a{
+    text-decoration: none;
+}
+
+.icon-bar {
+  width: 12%;
+  background-color:rgba(625, 125, 125, 0.6);
+  position: fixed;
+  z-index: 999;
+  top: 16%;
+  height: 55%;
+}
+
+.icon-bar a {
+  display: block;
+  text-align: center;
+  padding: 10%;
+  transition: all 0.3s ease;
+  color: white;
+  font-size: 36px;
+}
+
+.icon-bar a:hover {
+background-color:rgba(625, 175, 175, 0.7)
+}
+
+.active {
+background-color:rgba(625, 225, 225, 0.6)}
+
+.modal-content{
+    color: white;
+  background-color:rgba(525, 125, 125, 0.9);
+}
+
+</style>
 </head>
-<body class="bg-danger">
+<body class="bg-danger user-select-none">
+    <script src="confetti.js"></script>
+<script>
 
-<img src="../build/icon.png"   class="float-rigth  border-0 position-absolute m-1 start-0 " style=" width:2.2vw;  top:-1.5vh;" > 
-<span class="  border-0 position-absolute  m-1 text-white" style=" width:2.2vw;  top:-1.5vh; left:2.5vw; font-size:12px; ">PomoMethod</span>
-
-
-
+var week= ()=>{
 
 
-<button id="btn" class="float-rigth  border-0 position-absolute  end-0"  type="button">-</button>
-    
-   <div class="ml-4  shadow border-secondary rounded-end float-left border-start-0 p-1" id="counterPomo" style="background-color:rgba(625, 125, 125, 0.6); width:15vw; margin-left:0vw; margin-top: 2vh; top:20vh;">Pomodoros:0</div> 
+$(document).ready(function(){
+  $("#week").animate({bottom: '20%'});
+});
+
+
+}
+
+var weekhide= ()=>{
+
+$(document).ready(function(){
+  $("#week").animate({bottom: '100%'});
+});
+
+
+
+}
+
+
+var weekdayselect= ()=>{
+
+$(document).ready(function(){
+ $("#"+day).addClass("bg-danger text-white");
+
+ $("#"+day+"_val").removeClass("list-group-item-dark")
+ $("#"+day+"_val").addClass("list-group-item-warning");
+ $("#"+day+"_out").removeClass("bg-dark")
+ $("#"+day+"_out").addClass("bg-primary");
+$("#"+day+"_out").text(15);
+});
+
+
+
+}
+weekdayselect()
+
+</script>
+
+<img src="../build/icon.png"   class="float-rigth  border-0 position-absolute m-1 start-0 " style=" width:2.2vw;  top:-9vh;" > 
+<span class="  border-0 position-absolute  m-1 text-white p-lead" style=" width:2.2vw;  top:-9vh; left:2.5vw; font-size:12px; font-weight: bolder;">PomoMethod</span>
+<button id="btn" class="float-rigth  border-0 position-absolute  end-0" style="  top:-9vh;   " type="button"><i class="fa fa-window-minimize text-white p-lead"></i></button>
     <main>
         <div class="circle">
             <div id="time" class="stopwatch">00:00</div>
@@ -42,29 +119,198 @@
         </div>
         <div id="seconds-sphere" class="seconds-sphere"></div>
     </main>
+
+<div class=" icon-bar shadow border-secondary rounded-end float-left border-start-0 p-2">
+ 
+    
+       
+  <a class="rounded-circle" href="#" data-bs-toggle="modal" data-bs-target="#pomos" onclick="pomostoday()"><i class="bi bi-clock-history"><span class="text-white badge bg-danger " style="margin-left: 0.5%;font-family: arial; font-size: 12px; position:fixed;"  id="counterPomo">0</span></i></a>
+
+  <a href="#" target="" class="rounded-circle" onclick="week()"><i class="bi bi-calendar-day"></i></a> 
+  <a class="rounded-circle" href="#" data-bs-toggle="modal" onclick="recuperar()" data-bs-target="#conf"><i class="bi bi-gear-fill"></i></a>
+  <a href="#"class="rounded-circle"  data-bs-toggle="modal" data-bs-target="#about"><i class="fa fa-info"></i></a> 
+
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="about" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="aboutLabel">Sobre la app</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body overflow-auto">
+        <p></p>
+      </div>
+      <div class="modal-footer">
+  <a href="https://github.com/rootkit000/pomodoromethod" target="_blank" class="rounded-circle"><i class="fa fa-github"  data-bs-toggle="tooltip" data-bs-placement="right" title="Ver en repositorio de git"></i></a>
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="pomos" tabindex="-1" aria-labelledby="pomoslabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Pomodoros de hoy</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body overflow-auto">
+
+<p>Pomodoros el dia de hoy  </p><h1 id="spanpomo"></h1> <br>
+ <p>Meta diaria </p>
+<h1 id="goal">goal</h1>
+
+      </div>
+      <div class="modal-footer">
+  <!---      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrrar</button>-->
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="conf" tabindex="-1" aria-labelledby="conflabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">configuracion</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body overflow-auto">
+
+ <p>Meta diaria :</p>
+ <input type="range" min="1" max="24" id="metaval" value="0" oninput="this.nextElementSibling.value = this.value ;guardar()">
+<output id="data">24</output>
+ 
+
+<p>notificaciones
+<div class="form-check form-switch">
+  <input class="form-check-input" type="checkbox" id="notifications" onclick="if(this.checked)localStorage.setItem(this.id,this.value);else localStorage.removeItem(this.id);">
+  <label class="form-check-label" for="notifications">nativas</label>
+</div>
+
+<div class="form-check form-switch">
+  <input class="form-check-input" type="checkbox" id="notifications2"  onclick="if(this.checked)localStorage.setItem(this.id,this.value);else localStorage.removeItem(this.id);">
+  <label class="form-check-label" for="flexSwitchCheckChecked">popUp</label>
+</div>
+
+</span></p> <br>
+<h3>Misc</h3>
+<h6>Minimizar a comenzar pomodoro</h6>
+
+<div class="form-check form-switch">
+  <input class="form-check-input"  onload="if(this.checked)document.getElementById(this.id).checked=1;" type="checkbox" id="minimize" onclick="if(this.checked)localStorage.setItem(this.id,this.value);else localStorage.removeItem(this.id);">
+  <label class="form-check-label" for="flexSwitchCheckChecked">minimizar en bandeja</label>
+</div>
+<h6>Maximizar a comenzar Descanzo</h6>
+
+<div class="form-check form-switch">
+  <input class="form-check-input" type="checkbox" id="maximize" onclick="if(this.checked)localStorage.setItem(this.id,this.value);else localStorage.removeItem(this.id);" >
+  <label class="form-check-label" for="flexSwitchCheckChecked">mostrar</label>
+</div>
+
+
+<h6>Sonido</h6>
+
+<div class="form-check form-switch">
+  <input class="form-check-input" type="checkbox" id="sound" onclick="if(this.checked)localStorage.setItem(this.id,this.value);else localStorage.removeItem(this.id);" >
+  <label class="form-check-label" for="flexSwitchCheckChecked">sonido</label>
+</div>
+
+
+
+<h6>Effectos </h6>
+
+<div class="form-check form-switch">
+  <input class="form-check-input" type="checkbox" id="vfx" onclick="if(this.checked)localStorage.setItem(this.id,this.value);else localStorage.removeItem(this.id);" >
+  <label class="form-check-label" for="flexSwitchCheckChecked">vfx</label>
+</div>
+
+
+
+      </div>
+      <div class="modal-footer">
+
+<!--        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrrar</button>-->
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
 <center>
 </div>
+
+
+
+
+
+
 <div class="  w-50 shadow border-secondary rounded float-left  p-1" style="background-color:rgba(625, 125, 125, 0.6); font-size:42px">
     <h3 id="output" class="text-white p-lead" >Ningun pomodoro iniciado</h3>
  <div>   
+
     <script src="renderer.js"></script>
 </center>
-</body>
-</html>
+
+<div class="alert alert-danger " id="congrats" style="width: 50vw;position:fixed; right:25vw; bottom:-50%; height:40vh;"> <center><img src = "trophy.svg" alt="Mi SVG feliz" class="trophy bi bi-award-fill position-relative bottom-5"/ ></center></i><br><p style="font-size: 20px; font-weight: bolder;" class="position-absolute bottom-0 p-lead">!Has llegado a tu meta diaria</p></div>
 
 
 
+<div class="alert alert-danger modal-content" id="week" style="width: 90vw;position:fixed; right:5vw; bottom:-70%; height:60vh; z-index: +1000;"> 
+      <h1 class="p-lead">Registro semanal</h1>
+<ul class="list-group  list-group-horizontal list-group-flush" >
+  <li class="list-group-item" id="Lunes">Lunes</li>
+  <li class="list-group-item" id="Martes" >Martes</li>
+  <li class="list-group-item" id="Miercoles">Miercoles</li>
+  <li class="list-group-item" id="Jueves">Jueves</li>
+  <li class="list-group-item" id="Viernes">Viernes</li>
+  <li class="list-group-item" id="Sabado">Sabado</li>
+  <li class="list-group-item" id="Domingo"> Domingo</li>
 
+</ul><ul class="list-group list-group-horizontal list-group-flush" style="height:150px; font-size: 33.5px">
 
+  <li class="list-group-item list-group-item-dark " id="Lunes_val">    <span id="Lunes_out" class="badge bg-dark  rounded-pill">14</span>
+</li>
+  <li class="list-group-item list-group-item-dark" id="Martes_val" >    <span id="Martes_out"  class="badge bg-dark  rounded-pill">14</span>
+</li>
+  <li class="list-group-item list-group-item-dark" id="Miercoles_val">    <span id="Miercoles_out" class="badge bg-dark  rounded-pill">14</span>
+</li>
+  <li class="list-group-item list-group-item-dark" id="Jueves_val">   <span id="Jueves_out" class="badge bg-dark  rounded-pill">14</span>
+</li>
+  <li class="list-group-item list-group-item-dark" id="Viernes_val">   <span id="Viernes_out" class="badge bg-dark  rounded-pill">14</span>
+</li>
+  <li class="list-group-item list-group-item-dark" id="Sabado_val">  <span id="Sabado_out" class="badge bg-dark  rounded-pill">14</span>
+</li>
+  <li class="list-group-item list-group-item-dark" id="Domingo_val">   <span  id="Domingo_out"class="badge bg-dark rounded-pill">14</span>
+</li>
+</ul>
+<br>
 
-
-
-
-
-
-
-
-
-    
+<h1 id="testout"></h1>
+<button onclick="weekhide()" class="btn btn-light">Cerrrar</button>
+</div>
 </body>
 </html>

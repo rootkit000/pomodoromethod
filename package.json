@@ -1,6 +1,6 @@
 {
   "name": "PomoMethod",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": {
     "name": "Rootkit",
     "email": "leonardofernandef@outlook.com"
@@ -30,6 +30,8 @@
     "standard": "^16.0.4"
   },
   "dependencies": {
+    "bootstrap-icons": "^1.8.3",
+    "canvas-confetti": "^1.5.1",
     "electron-reload": "^1.5.0",
     "electron-squirrel-startup": "^1.0.0",
     "node-notifier": "^10.0.1"
