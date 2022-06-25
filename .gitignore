@@ -2,9 +2,4 @@
 
 /node_modules/
 /dist/
-/build/
-*.ttf
-*.woff2
-*.min.css
-*.min.js
 /out/
