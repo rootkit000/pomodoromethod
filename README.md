@@ -30,63 +30,6 @@ Requeriments for packaging
 <ul>
 <li>Color transition to switch moods between work time and rest time</li>
 <li>notification at the end of a timer period</li>
-
-
-
-
-
-
-
-Traducción de texto
-
-DETECTAR IDIOMA
-
-ESPAÑOL
-
-INGLÉS
-
-FRANCÉS
-
-INGLÉS
-
-ESPAÑOL
-
-FRANCÉS
-Texto original
-
-# pomomethod
-pomodoro method using coundown timers with electron
-
-<h1>What is the Pomomethod?</h1>
-The Pomodoro Technique is created by Francesco Cirillo for a more productive way to work and study. The technique uses a timer to break down work into intervals, traditionally 25 minutes in length, separated by short breaks. Each interval is known as a pomodoro, from the Italian word for 'tomato', after the tomato-shaped kitchen timer that Cirillo used as a university student
-
-
-<img src="https://kuviki.com/wp-content/uploads/2022/02/pomodoro2.jpg" style="with:80vw; height: 80vh;"/>
-
-Usage:
-
-click on star button and the app start counting time and minimize to tray while you do your activities
-
-this app will not count the pomodoro if u stop while rest or pomo time isn't finished
-
-
-__Very important the app is only packaged for Windows if u want package for other sys u can follow the next steps__
-
-
-Requeriments for packaging
-<ul>
-<li>node js</li>
-<li>npm</li>
-<li>electron</li>
-<li>yarn</li>
-</ul>
-
-<ul>
-<li>Color transition to switch moods between work time and rest time</li>
-<li>notification at the end of a timer period</li>
-
-1.136 / 5.000
-Resultados de traducción
 #pomométodo
 método pomodoro usando temporizadores de cuenta regresiva con electrones
 
