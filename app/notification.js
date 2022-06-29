@@ -4,6 +4,25 @@ icon and name don't will show while is not compilled*/
 
 
 
+  var createnotification=(body)=>{
+$(document).ready(function(){
+  $(".notimodal").prepend("<div class='toast' role='alert' style='position:fixed; z-index: 999; right: -30vw; bottom: -30vh;' aria-live='assertive' aria-atomic='true'><div class='toast-header'><img src='../build/icon.png' style='width:20px; height: 20px;' class='rounded me-2' ><strong class='me-auto'>PomoMethod</strong><small></small><button type='button' class='btn-close' data-bs-dismiss='toast' aria-label='Close'></button></div><div class='toast-body'>"+body+"</div></div>");
+
+  $('.toast').toast('show');
+   $(".toast").animate({right: '2vw'});
+    $(".toast").animate({bottom: '2vh'});
+   
+});
+setTimeout(() => {   
+
+  $('.toast').toast('hide');
+
+
+}, 20000);
+
+}
+
+
 
 function PomodoroFinalizado() {
 
