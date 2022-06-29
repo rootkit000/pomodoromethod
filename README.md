@@ -1,5 +1,5 @@
 # pomomethod
-<a href="/app/">Use the web version</a>
+<a href="/pomodoromethod/app/">Use the web version</a>
 pomodoro method using coundown timers with electron
 
 <h1>What is the Pomomethod?</h1>
@@ -56,7 +56,7 @@ __Muy importante, la aplicación solo está empaquetada para Windows si desea un
 
 Descargas:
 <a href="https://mega.nz/file/0VVA2AyR#kAVaN_qtblI8W1f_MNWx6ze5NpmCK8ByxDh4vegOgLA">WINX64</a>
-<a href="/app/">Usar la  version web </a>
+<a href="/pomodoromethod/app/">Usar la  version web </a>
 
 Requisitos para el embalaje
 <ul>
