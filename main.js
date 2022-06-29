@@ -48,8 +48,11 @@ if (!app.isPackaged) {
 }
 else
 {
+
+
+	
 	 mainWindow = new BrowserWindow({
-		
+
 //    kiosk:true,
 //    fullscreen :true,
 	    alwaysOnTop:true,
