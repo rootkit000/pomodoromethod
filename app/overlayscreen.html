@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <script src="cronometro.js"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="stylesheet" href="./style/variable.css" />
+    <link rel="stylesheet" href="./style/style.css" />
+
+    <title>Descanzo</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="overlay">
+        <div class="workouts">
+          <h3 class="workout__text">Do this Workout</h3>
+          <p class="workout__text">Go somewhere else</p>
+          <ul class="workout__lists">
+            <li>Drink Water</li>
+            <li>Eye Rotate</li>
+            <li>Push Ups</li>
+            <li>Chair leg raise</li>
+          </ul>
+        </div>
+
+        <h2 class="text_center" >🧘‍ Descanzo🧘‍</h2>
+
+        <div class="clock__area anime__breadth" >
+              <p class="clock__text" id="time"></p>
+            </div>
+          </div>
+          <!-- <button class="btn btn__rounded clock__stop">Add 5 sec</button> -->
+        </div>
+      </div>
+    </div>
+    <style>
+      body {
+        background-color: var(--transparent);
+      }
+      .container {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .overlay {
+        position: relative;
+        color: var(--primary-color);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 0 auto;
+        width: 25em;
+        padding: 4em;
+        height: 100vh;
+        background-color: var(--secondary-color);
+      }
+      .text_center {
+        color: var(--offwhite);
+      }
+      .workouts {
+        margin-bottom: 3em;
+      }
+      ul.workout__lists {
+        list-style-position: inside;
+        font-weight: 200;
+        margin-top: 1em;
+      }
+      ul.workout__lists li {
+        margin-top: 0.4em;
+      }
+      .btn__group {
+        position: absolute;
+        bottom: 0;
+      }
+      .btn__filled {
+        margin-right: 0;
+        border: none;
+        background-color: var(--primary-color-light);
+        color: var(--offwhite);
+        flex-basis: 50%;
+      }
+      .btn__filled:hover {
+        background-color: var(--offwhite);
+        color: var(--primary-color-light);
+      }
+      .btn__noround {
+        padding: 0 1em;
+        flex-basis: 50%;
+      }
+    </style>
+
+  </body>
+</html>

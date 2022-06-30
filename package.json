@@ -1,0 +1,56 @@
+{
+  "name": "PomoMethod",
+  "version": "1.0.1",
+  "author": {
+    "name": "Rootkit",
+    "email": "leonardofernandef@outlook.com"
+  },
+  "description": "Usa el metodo de pomodoro en tus actividades",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rootkit000/pomodoromethod"
+  },
+  "main": "main.js",
+  "scripts": {
+    "start": " electron-forge start",
+    "package": "electron-forge package",
+    "make": " electron-forge make",
+    "release": "release-it"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@electron-forge/cli": "^6.0.0-beta.63",
+    "@electron-forge/maker-deb": "^6.0.0-beta.63",
+    "@electron-forge/maker-rpm": "^6.0.0-beta.63",
+    "@electron-forge/maker-squirrel": "^6.0.0-beta.63",
+    "@electron-forge/maker-zip": "^6.0.0-beta.63",
+    "@electron-forge/publisher-github": "^6.0.0-beta.63",
+    "electron": "^18.0.4",
+    "release-it": "^14.14.2",
+    "standard": "^16.0.4"
+  },
+  "dependencies": {
+    "bootstrap-icons": "^1.8.3",
+    "canvas-confetti": "^1.5.1",
+    "electron-reload": "^1.5.0",
+    "electron-squirrel-startup": "^1.0.0",
+    "node-notifier": "^10.0.1"
+  },
+  "config": {
+    "forge": "forge.config.js"
+  },
+  "release-it": {
+    "git": {
+      "requireCleanWorkingDir": false
+    },
+    "github": {
+      "release": true,
+      "assets": [
+        "out/make/**/*.exe",
+        "out/make/**/*.nupkg",
+        "out/make/**/*.deb"
+      ]
+    },
+    "npm": false
+  }
+}
