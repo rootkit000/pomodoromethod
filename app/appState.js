@@ -12,6 +12,7 @@ $("#body").removeClass("bodypomo3")
  $("#body").addClass("bodypomo2");
 
 
+ $(".ui2").addClass("ui");
  $(".ui3").addClass("ui");
 $(".ui").removeClass("ui2");
 $(".ui3").removeClass("ui3");

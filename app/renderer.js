@@ -205,7 +205,7 @@ $("#"+dia+"_out").text(localStorage.getItem(day,pomocounter));
 $("#0_out").text(localStorage.getItem('Domingo'));
 $("#1_out").text(localStorage.getItem('Lunes'));
 $("#2_out").text(localStorage.getItem('Martes'));
-$("#3_out").text(localStorage.getItem('miercoles'));
+$("#3_out").text(localStorage.getItem('Miercoles'));
 $("#5_out").text(localStorage.getItem('Viernes'));
 $("#6_out").text(localStorage.getItem('Sabado'));
 
