@@ -11,13 +11,31 @@ const setButton = document.getElementById('btn')
 /*titutlo*/
 const titleInput = document.getElementById('title')
 
-    var pomocounter = 0;
+var notifi;
+var pomocounter = 0;
+
 if(localStorage.getItem("pomocounts")){
 pomocounter=localStorage.getItem("pomocounts");
 pomocounter=parseInt(pomocounter, 10)
 }
 
 var Defaulsetting=()=>{
+
+
+
+    if (!localStorage.getItem("mins")){localStorage.setItem("mins",25)}
+
+    if (!localStorage.getItem("restshort")){localStorage.setItem("restshort",5)}
+
+    if (!localStorage.getItem("restlong")){localStorage.setItem("restlong",30)}
+
+
+TimePomodoro=Number(localStorage.getItem("mins"))
+TimeRest=Number(localStorage.getItem("restshort"))
+minsshort=Number(localStorage.getItem("restlong"))
+
+document.getElementById('data').textContent=localStorage.getItem("meta");
+document.getElementById('metaval').value=localStorage.getItem("meta");
 
 if(!localStorage.getItem("vfx")){
 localStorage.setItem("vfx",'on');
@@ -38,7 +56,7 @@ localStorage.setItem("maximize",'on');
 }
 
 if(!localStorage.getItem("minimize")){
-localStorage.setItem("minimize",'on');
+localStorage.setItem("minimize",'off');
 }
 
 
@@ -285,11 +303,27 @@ localStorage.setItem("meta",4);
 recuperarpomo()
 
 
+var Soundnotifi=()=>
+{
+if (localStorage.getItem("sound")=='on') {
+
+notifi=localStorage.getItem('notifisound')
+if(!localStorage.getItem('notifisound')){notifi='sound-8';}
+
+const notifysound = new Audio('audio/'+notifi+'.mp3');
+notifysound.play();
+notifysound.loop =false;
+    }
+}
+
 var notificationtoast=()=>{
 
       $("#toast").animate({bottom: '30%'});
 }
+
 notificationtoast()
+
+
 
 var felicidades=()=>
 {
@@ -344,11 +378,14 @@ localStorage.setItem("restshort",val3);
 
 localStorage.setItem("restlong",val4); 
 
+let val5=document.getElementById('notifisound').value
+
+
+localStorage.setItem("notifisound",val5);
 
 recuperar()
-
 }
-
+var ResetPause=()=>{MinutesPause=null;SecondsPause=null;}
 
 var recuperar=()=>{
 
@@ -370,8 +407,8 @@ document.getElementById('restldata').textContent=localStorage.getItem("restlong"
 document.getElementById('restlong').value=localStorage.getItem("restlong");
 
 TimePomodoro=Number(localStorage.getItem("mins")) 
-TimeRest=Number(localStorage.getItem("restshort")) 
-minsshort=Number(localStorage.getItem("restlong"))  
+minsshort=Number(localStorage.getItem("restshort"))
+minslong=Number(localStorage.getItem("restlong"))
 
 document.getElementById('data').textContent=localStorage.getItem("meta");
 document.getElementById('metaval').value=localStorage.getItem("meta");
@@ -425,9 +462,9 @@ cicleAdd()
 secondsSphere.style.animation = 'rotacion 60s linear infinite';
  if (check == null) {
                 
-             
-countDownDate.setMinutes(countDownDate.getMinutes() + TimePomodoro );
-countDownDate.setSeconds(countDownDate.getSeconds()+1);
+if(MinutesPause==null){ countDownDate.setMinutes(countDownDate.getMinutes() + TimePomodoro );}else{countDownDate.setMinutes(countDownDate.getMinutes() + MinutesPause );}
+
+if(SecondsPause==null){ countDownDate.setSeconds(countDownDate.getSeconds() + 1);}else{countDownDate.setSeconds(countDownDate.getSeconds() + 1+ SecondsPause);}
 
 
                 check =setInterval(function() {
@@ -436,7 +473,7 @@ countDownDate.setSeconds(countDownDate.getSeconds()+1);
   var now = new Date().getTime();
     
   // Find the distance between now and the count down date
-  var distance = countDownDate - now;
+   distance = countDownDate - now;
     
   // Time calculations for days, hours, minutes and seconds
   var days = Math.floor(distance / (1000 * 60 * 60 * 24));
@@ -494,6 +531,7 @@ if (localStorage.getItem('maximize')=="on") {  setTimeout(() => {window.electron
               secondsSphere.style.transform = 'rotate(-90deg) translateX(60px)';
     secondsSphere.style.animation = 'none';
 lastpomo()
+ResetPause()
 startrest()
 
 }
@@ -520,8 +558,10 @@ secondsSphere.style.animation = 'rotacion 60s linear infinite';
 
                 
                 
-countDownDate.setMinutes(countDownDate.getMinutes() + TimeRest );
-countDownDate.setSeconds(countDownDate.getSeconds()+ 1);
+if(MinutesPause==null){ countDownDate.setMinutes(countDownDate.getMinutes() + TimeRest );}else{countDownDate.setMinutes(countDownDate.getMinutes() + MinutesPause );}
+
+if(SecondsPause==null){ countDownDate.setSeconds(countDownDate.getSeconds() + 1);}else{countDownDate.setSeconds(countDownDate.getSeconds() + 1+ SecondsPause);}
+
 
 
            
@@ -535,7 +575,7 @@ countDownDate.setSeconds(countDownDate.getSeconds()+ 1);
   var now = new Date().getTime();
     
   // Find the distance between now and the count down date
-  var distance = countDownDate - now;
+   distance = countDownDate - now;
     
   // Time calculations for days, hours, minutes and seconds
   var days = Math.floor(distance / (1000 * 60 * 60 * 24));
@@ -578,7 +618,8 @@ countDownDate.setSeconds(countDownDate.getSeconds()+ 1);
             document.getElementById("time").textContent = '00:00';
               secondsSphere.style.transform = 'rotate(-90deg) translateX(60px)';
     secondsSphere.style.animation = 'none';
-    startpomodoro()
+ResetPause()
+startpomodoro()
   }
     
                 }, 1000);
@@ -593,15 +634,32 @@ countDownDate.setSeconds(countDownDate.getSeconds()+ 1);
 
 
 const stop = () => {
-    stateStop()
+ if(state=='Tomate un descanzo'){console.log(state);stateStopbr()}
+ if(state=='Corriendo pomodoro}'){console.log(state);stateStop()}
+
+
+var pausetime = document.getElementById("time").textContent;
+let pausetime1 = pausetime.match(/([0-9])([0-9])()/g);
+let pausetime2 = pausetime.match(/()([0-9])([0-9])/g);
+
+
+
+ MinutesPause=Number(pausetime1.at(0));
+ SecondsPause= Number(pausetime2.at(1))
+
     clearInterval(check);
             check = null;
+
             document.getElementById("time").textContent = '00:00';
+            document.getElementById("time").textContent = pausetime;
+
               secondsSphere.style.transform = 'rotate(-90deg) translateX(110px)';
     secondsSphere.style.animation = 'none';
     playPauseButton.classList.remove('running');
-    ciclo=ciclo-1
-    document.getElementById("output").textContent = state
+    if(state=='Tomate un descanzo'||state=='DetenidoBr'){console.log(state);}else{console.log(state);ciclo=ciclo-1}
+     if(state=='DetenidoBr'){    document.getElementById("output").textContent = "Descanzo pausado"
+}else{    document.getElementById("output").textContent = state
+}
 }
 
 
@@ -615,14 +673,33 @@ const playPause = () => {
 
         playPauseButton.classList.add('bi-pause-circle-fill');
         playPauseButton.classList.remove('bi-play-circle-fill');
-        
-        startpomodoro();
-    } else {
-        
-        
 
+        if (state== "Detenido") {startpomodoro();}
+        if (state== "DetenidoBr") {startrest();}
+        if(state == "Ningun pomodoro iniciado"){startpomodoro()}
+
+
+
+
+
+
+    } else {
+        var pausetime = document.getElementById("time").textContent;
+
+        let pausetime2 = pausetime.match(/()([0-9])([0-9])/g);
+        Secondslet= Number(pausetime2.at(1))
+
+var checkifstoptheclock=()=>{
+console.log(Secondslet)
+if(Secondslet>1){
         playPauseButton.classList.remove('bi-pause-circle-fill');
         playPauseButton.classList.add('bi-play-circle-fill');
-        stop();
+
+        if (state=="Tomate un descanzo"){stop();stateStopbr(); }else{stateStop();stop()}
+    }
+}
+
+    checkifstoptheclock()
+
     }
 }

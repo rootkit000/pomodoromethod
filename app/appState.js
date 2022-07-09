@@ -69,16 +69,44 @@ $(".badge").addClass("bg-success");
 
 }
 
+function stateStopbr(){state = "DetenidoBr"
+
+$("#body").removeClass("bodypomo")
+$("#body").removeClass("bg-danger")
+$("#body").removeClass("bodypomo2")
+$("#body").addClass("bodypomo3")
+
+
+ $(".ui").addClass("ui3");
+$(".ui").removeClass("ui2");
+$(".ui").removeClass("ui");
+
+$(".circle").addClass("circle-content3");
+$(".circle").removeClass("circle-content2");
+$(".circle").removeClass("circle-content");
+
+
+$(".modal-content").css( "background-color", "rgba(203, 231, 197, 0.8)")
+
+$(".badge").removeClass("bg-primary");
+$(".badge").removeClass("bg-danger");
+$(".badge").addClass("bg-success");
+
+}
+
 
 var mins=Number(localStorage.getItem("mins")) 
 var minsshort=Number(localStorage.getItem("restshort")) 
 var minslong=Number(localStorage.getItem("restlong"))  
 
+var MinutesPause=null;
+var SecondsPause=null;
 // contador de pomodoros
 var TimePomodoro=mins;
 var TimeRest=minsshort;
-
+var Seconds=null;
 var ciclo = 0;
+var distance=null;
 
 function cicleAdd(){
   if (ciclo<4) {ciclo=ciclo + 1;}

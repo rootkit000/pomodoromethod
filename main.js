@@ -57,8 +57,7 @@ else
 //    fullscreen :true,
 	    alwaysOnTop:true,
 			resizable:false,
-			movable: true,
-   		skipTaskbar: false,
+
 			show :true,
 			darkTheme: true, 
 			transparent:false,

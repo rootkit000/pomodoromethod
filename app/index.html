@@ -245,26 +245,39 @@ Esta técnica se relaciona con conceptos como timeboxing y desarrollo iterativo 
       <div class="modal-body overflow-auto">
 
  <p>Meta diaria :</p>
- <input type="range" min="1" max="24" id="metaval" value="0" oninput="this.nextElementSibling.value = this.value ;guardar()"/>
+ <input type="range" min="1" max="24" id="metaval" value="0" oninput="this.nextElementSibling.value = this.value ;guardar()">
 <output id="data">24</output>
 <br>
  <p>Pomodoro :</p>
- <input type="range" min="1" max="45" id="mins" value="0" oninput="this.nextElementSibling.value = this.value ;guardar()"/>
+ <input type="range" min="1" max="45" id="mins" value="0" oninput="this.nextElementSibling.value = this.value ;guardar();ResetPause()">
 <output id="minsdata">25</output>
 
 <br>
   <p>descanzo corto:</p>
 
- <input type="range" min="1" max="45" id="restshort" value="0" oninput="this.nextElementSibling.value = this.value ;guardar()"/>
+ <input type="range" min="1" max="45" id="restshort" value="5" oninput="this.nextElementSibling.value = this.value ;guardar();ResetPause()">
 <output id="restsdata">5</output>
 
 <br>
  <p>descanzo largo :</p>
- <input type="range" min="1" max="45" id="restlong" value="0" oninput="this.nextElementSibling.value = this.value ;guardar()">
-<output id="restldata"/>30</output>
+ <input type="range" min="1" max="45" id="restlong" value="30" oninput="this.nextElementSibling.value = this.value ;guardar();ResetPause()">
+<output id="restldata">30</output>
  
 
-<p>notificaciones
+<p>notificaciones</p>
+<br>
+  <label class="form-check-label" for="notifisound">Timbre</label>
+
+  <select select class="form-select form-select-sm mb-1" aria-label="Sonido" id="notifisound" oninput="this.nextElementSibling.value = this.value ;guardar()">
+  <option value="sound-2">1</option>
+  <option value="sound-5">2</option>
+  <option value="sound-6">3</option>
+  <option value="sound-8">4</option>
+  <option value="sound-10">5</option>
+  </select>
+
+
+
 <div class="form-check form-switch">
   <input class="form-check-input" type="checkbox" id="notifications" onclick="if(this.checked)localStorage.setItem(this.id,this.value);else localStorage.setItem(this.id,'off');">
   <label class="form-check-label" for="notifications">nativas</label>
