@@ -8,22 +8,40 @@ const secondsSphere = document.getElementById('seconds-sphere');
 /*boton*/
 const setButton = document.getElementById('btn')
 
+const updateButton = document.getElementById('download-btn')
+
 /*titutlo*/
 const titleInput = document.getElementById('title')
 
+
+
 var notifi;
 var pomocounter = 0;
-
+var clocksound;
+var clockstatus='off'
 if(localStorage.getItem("pomocounts")){
 pomocounter=localStorage.getItem("pomocounts");
 pomocounter=parseInt(pomocounter, 10)
 }
 
+
+if(localStorage.getItem('updates')=='on'){
+
+   let example= document.getElementById('download-btn');
+   example.style.display='none';
+}
+else{
+let example= document.getElementById('download-btn');
+   example.style.display='visible';
+
+}
 var Defaulsetting=()=>{
 
 
 
     if (!localStorage.getItem("mins")){localStorage.setItem("mins",25)}
+
+    if (!localStorage.getItem("updates")){localStorage.setItem("updates",'off')}
 
     if (!localStorage.getItem("restshort")){localStorage.setItem("restshort",5)}
 
@@ -82,6 +100,12 @@ setButton.addEventListener('click', () => {
     //const title = titleInput.value
     window.electronAPI.setTitle()
 });
+
+updateButton.addEventListener('click', () => {
+
+    window.electronAPI.updateap()
+});
+
 
 var now = new Date();
 var hoy =now.getDate();
@@ -316,12 +340,26 @@ notifysound.loop =false;
     }
 }
 
+
+var clocksoundstop=()=>{
+
+
+
+}
+
+var Soundclock=()=>{
+
+
+
+
+}
 var notificationtoast=()=>{
 
       $("#toast").animate({bottom: '30%'});
 }
 
 notificationtoast()
+
 
 
 
@@ -425,6 +463,12 @@ document.getElementById('minimize').checked=1
 if(localStorage.getItem('maximize')=='on'){
 document.getElementById('maximize').checked=1
 }
+
+
+if(localStorage.getItem('updates')=='on'){
+document.getElementById('updates').checked=1
+}
+
 if(localStorage.getItem('sound')=='on'){
 document.getElementById('sound').checked=1
 }
@@ -436,6 +480,7 @@ document.getElementById('vfx').checked=1
 }
 
 
+
 var pomostoday=()=>{
 document.getElementById("goal").textContent=localStorage.getItem("meta");
 }
@@ -445,9 +490,8 @@ document.getElementById("goal").textContent=localStorage.getItem("meta");
  var check = null;
 
 
-
  function startpomodoro() {
-if (localStorage.getItem('minimize')=='on') {setTimeout(() => {window.electronAPI.Pomodorostarted()}, 3000);}
+if (localStorage.getItem('minimize')=='on') {setTimeout(() => {window.electronAPI.Pomodorostarted();}, 3000);}
 
 
 ispomotoday()
@@ -670,8 +714,9 @@ let pausetime2 = pausetime.match(/()([0-9])([0-9])/g);
 const playPause = () => {
     const isPaused = !playPauseButton.classList.contains('bi-pause-circle-fill');
     if (isPaused) {
-
-        playPauseButton.classList.add('bi-pause-circle-fill');
+        document.getElementById('time').classList.add('timeText');
+        Soundclock()
+         playPauseButton.classList.add('bi-pause-circle-fill');
         playPauseButton.classList.remove('bi-play-circle-fill');
 
         if (state== "Detenido") {startpomodoro();}
@@ -684,6 +729,10 @@ const playPause = () => {
 
 
     } else {
+
+clocksound=null;
+document.getElementById('time').classList.remove('timeText');
+
         var pausetime = document.getElementById("time").textContent;
 
         let pausetime2 = pausetime.match(/()([0-9])([0-9])/g);

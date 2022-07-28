@@ -1,9 +1,11 @@
-const {app, BrowserWindow, ipcMain,shell,Menu, Tray} = require('electron')
+const {app, BrowserWindow, ipcMain,shell,Menu,Tray,webContents} = require('electron')
 const path = require('path')
 const iconpath =path.join(__dirname,'build/icon.ico')
 let mainWindow=null
 let secondWindow=null
 let appIcon = null
+
+
 
 if (require("electron-squirrel-startup")) {
   // eslint-disable-line global-require
@@ -25,7 +27,12 @@ if (!app.isPackaged) {
 
 if (!app.isPackaged) {
 	 mainWindow = new BrowserWindow({
-		
+      id:"pomo",
+      titleBarStyle:'default',
+      titleBarOverlay: {
+    color: 'rgba(0,0,0,0)',
+    symbolColor: 'rgba(400,100,100,0.8)'
+  },
  //   kiosk:true,
 //    fullscreen :true,
 	    alwaysOnTop:true,
@@ -33,15 +40,18 @@ if (!app.isPackaged) {
     	movable: true,
    		skipTaskbar: false,
 			show :true,
-			darkTheme: true, 
+			darkTheme: true,
 			transparent:false,
- // frame:false ,
+ 			//frame:false ,
  //   closable : false,
 			maximizable :false,
 	 // autoHideMenuBar :true,
 		webPreferences: {
-		 
-			preload: path.join(__dirname, 'preload.js')
+			      preload: path.join(__dirname, 'preload.js'),
+
+		      nodeIntegration: false,
+		      contextIsolation: true,
+          enableRemoteModule: true
 			 }
 	})
 
@@ -50,7 +60,7 @@ else
 {
 
 
-	
+
 	 mainWindow = new BrowserWindow({
 
 //    kiosk:true,
@@ -59,18 +69,21 @@ else
 			resizable:false,
 
 			show :true,
-			darkTheme: true, 
+			darkTheme: true,
 			transparent:false,
-			 frame:false ,
+		//	frame:false ,
  //   closable : false,
 			maximizable :false,
 		webPreferences: {
-		 
-			preload: path.join(__dirname, 'preload.js')
+					preload: path.join(__dirname, 'preload.js'),
+		      nodeIntegration: false,
+		      contextIsolation: true,
+          enableRemoteModule: true
 			 }
 	})
 
 }
+
 
 
 	ipcMain.on('set-title', () => {
@@ -79,23 +92,26 @@ else
 		win.setTitle(title)
 	*/	mainWindow.hide()
 	})
+
+
+app.on('browser-window-blur', function(){
+
+
+mainWindow.hide()
+
+})
+
+
+
 	mainWindow.loadFile('app/index.html')
+
+
 }
 
 //
 
 
 
-function CreateSecondWindow() {
-  secondWindow = new BrowserWindow(getBrowserOptions);
-  secondWindow.loadURL(
-    path.join("file://", __dirname, "/app/overlayscreen.html")
-  );
-  secondWindow.maximize();
-
-
-
-}
 
 
 ipcMain.on("Pomo-started", function (event) {
@@ -119,17 +135,6 @@ ipcMain.on("break-finished", function () {
   });
 });
 
-function getBrowserOptions() {
-  return {
-    frame: false,
-    transparent: true,
-    alwaysOnTop: true,
-    resizable: false,
-    show: false,
-    webPreferences: { nodeIntegration: true, contextIsolation: false },
-  };
-}
-
 app.whenReady().then(() => {
 	appIcon = new Tray(iconpath)
 
@@ -149,6 +154,8 @@ app.whenReady().then(() => {
 	contextMenu.items[1].checked = false
 
 	// Call this again for Linux because we modified the context menu
+
+
 	appIcon.setContextMenu(contextMenu)
 	appIcon.setToolTip('Pomomethod.')
 
@@ -156,7 +163,7 @@ app.whenReady().then(() => {
 })
 app.whenReady().then(() => {
 	createWindow()
-	
+
 	app.on('activate', function () {
 		if (BrowserWindow.getAllWindows().length === 0) createWindow()
 	})
@@ -206,7 +213,6 @@ ipcMain.on("StartNextRound", function (event) {
 		CurrentRound = 1;
 	}
 });
-
 
 
 

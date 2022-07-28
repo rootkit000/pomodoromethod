@@ -13,7 +13,6 @@
 <link rel="stylesheet" href="icons.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100&display=swap" rel="stylesheet">
     <link href="style.css" rel="stylesheet">
-    
 
 
     <script src="jquery.js"></script>
@@ -118,7 +117,7 @@ background-color:rgba(159, 223, 223, 0.6);
 }
 </style>
 </head>
-<body class="bg-danger user-select-none" id="body">
+<body class="bg-danger user-select-none" onblur="clocksoundstop()" id="body">
     <script src="confetti.js"></script>
 <script>
 
@@ -146,9 +145,11 @@ $(document).ready(function(){
 
 </script>
 
-<img src="../build/icon.png"   class="float-rigth  border-0 position-absolute m-1 start-0 " style=" width:2.2vw;  top:-9vh;" > 
+<!--img src="../build/icon.png"   class="float-rigth  border-0 position-absolute m-1 start-0 " style=" width:2.2vw;  top:-9vh;" >
+
 <span class="  border-0 position-absolute  m-1 text-white p-lead" style=" width:2.2vw;  top:-9vh; left:2.5vw; font-size:12px; font-weight: bolder;">PomoMethod</span>
-<button id="btn" class="float-rigth  border-0 position-absolute  end-0" style="  top:-9vh;   " type="button"><i class="fa fa-window-minimize text-white p-lead"></i></button>
+-->
+<button  hidden id="btn" class="float-rigth  border-0 position-absolute  end-0" style="  top:-9vh;   " type="button"><i class="fa fa-window-minimize text-white p-lead"></i></button>
     <main>
         <div class="circle circle-content">
             <div id="time" style="font-size: 40px;"class="stopwatch">00:00</div>
@@ -192,7 +193,36 @@ Además, al prevenir la multitarea, ayuda a alcanzar un estado de foco más elev
 
 Esta técnica se relaciona con conceptos como timeboxing y desarrollo iterativo e incremental, usados en el desarrollo de software, en contextos de desarrollo ágil, principalmente. El método también ha sido adoptado en el contexto de pair programming (programación en pareja).</p>
       </div>
+
+      <script>
+        var sayupdatemessage=()=>{
+
+createnotification('se comprobara si hay o no una nueva version de ser asi se instalara');
+    document.getElementById('download-btn').style.display='none'
+}
+      </script>
       <div class="modal-footer">
+<button class="btn btn-light" id="download-btn" onclick="sayupdatemessage()" >
+Comprobar actualizaciones
+</button>
+
+
+<h1>V0.0.7</h1>
+
+    <div id="control" >
+
+    <label for="download" id="download-label" hidden >xd</label>
+
+
+    <progress   value="0" max="100"   hidden  class="progress progress-bar" id="download">
+
+
+    </progress>
+
+
+
+</div>
+
 
 
   <a href="https://github.com/rootkit000/pomodoromethod" target="_blank" class="rounded-circle" style="text-decoration: none; color: white;">Ver Repositiorio de GitHub<i class="fa fa-github"  style="text-decoration: none;" data-bs-toggle="tooltip" data-bs-placement="right" title="Ver en repositorio de git"></i></a>
@@ -263,7 +293,7 @@ Esta técnica se relaciona con conceptos como timeboxing y desarrollo iterativo 
  <input type="range" min="1" max="45" id="restlong" value="30" oninput="this.nextElementSibling.value = this.value ;guardar();ResetPause()">
 <output id="restldata">30</output>
  
-
+<hr>
 <p>notificaciones</p>
 <br>
   <label class="form-check-label" for="notifisound">Timbre</label>
@@ -283,12 +313,21 @@ Esta técnica se relaciona con conceptos como timeboxing y desarrollo iterativo 
   <label class="form-check-label" for="notifications">nativas</label>
 </div>
 
+
 <div class="form-check form-switch">
   <input class="form-check-input" type="checkbox" id="notifications2"  onclick="if(this.checked)localStorage.setItem(this.id,this.value);else localStorage.setItem(this.id,'off');">
   <label class="form-check-label" for="flexSwitchCheckChecked">popUp</label>
 </div>
 
+<hr>
+<br>
+<p>Actualizaciones</p>
+<div class="form-check form-switch">
+  <input class="form-check-input" type="checkbox" id="updates" onclick="if(this.checked)localStorage.setItem(this.id,this.value);else localStorage.setItem(this.id,'off');">
+  <label class="form-check-label" for="notifications">Actualizaciones automaticas</label>
+</div>
 </span></p> <br>
+<hr>
 <h3>Misc</h3>
 <h6>Minimizar a comenzar pomodoro</h6>
 
@@ -351,6 +390,7 @@ Esta técnica se relaciona con conceptos como timeboxing y desarrollo iterativo 
  <div>   
 
     <script src="renderer.js"></script>
+    <script src="update.js"></script>
 </center>
 
 <div class="alert alert-light " id="congrats" style="width: 50vw;position:fixed; right:25vw; bottom:-50%; height:40vh;"> <center><img src = "trophy.svg" alt="Mi SVG feliz" class="trophy bi bi-award-fill position-relative bottom-5"/ ></center></i><br><p style="font-size: 15px; font-weight: bolder;" class="position-absolute bottom-0 p-lead">!Has llegado a tu meta diaria</p></div>
@@ -388,6 +428,10 @@ Esta técnica se relaciona con conceptos como timeboxing y desarrollo iterativo 
 
 <h1 id="testout"></h1>
 <button onclick="weekhide()" class="btn btn-light">Cerrrar</button>
+<script>
+
+
+</script>
 </div>
 </body>
 </html>

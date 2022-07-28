@@ -1,6 +1,6 @@
 {
   "name": "PomoMethod",
-  "version": "1.0.1",
+  "version": "0.0.8",
   "author": {
     "name": "Rootkit",
     "email": "leonardofernandef@outlook.com"
@@ -29,12 +29,39 @@
     "release-it": "^14.14.2",
     "standard": "^16.0.4"
   },
+  "bundledDependencies": [
+    "archiver",
+    "child_process",
+    "fs",
+    "node-wget",
+    "os",
+    "path",
+    "ping",
+    "regedit",
+    "request",
+    "start",
+    "xml2js",
+    "util",
+    "replace",
+    "process",
+    "fs",
+    "console",
+    "electron",
+    "electron-builder",
+    "electron-packager",
+    "electron-squirrel-startup",
+    "node-notifier",
+    "uaup-js"
+  ],
   "dependencies": {
     "bootstrap-icons": "^1.8.3",
     "canvas-confetti": "^1.5.1",
     "electron-reload": "^1.5.0",
     "electron-squirrel-startup": "^1.0.0",
-    "node-notifier": "^10.0.1"
+    "fetch": "^1.1.0",
+    "jquery": "^3.6.0",
+    "node-notifier": "^10.0.1",
+    "uaup-js": "^0.0.22"
   },
   "config": {
     "forge": "forge.config.js"
@@ -52,5 +79,28 @@
       ]
     },
     "npm": false
-  }
+  },
+  "bundleDependencies": [
+    "archiver",
+    "child_process",
+    "fs",
+    "node-wget",
+    "os",
+    "path",
+    "ping",
+    "regedit",
+    "request",
+    "start",
+    "xml2js",
+    "util",
+    "replace",
+    "process",
+    "fs",
+    "console",
+    "electron",
+    "electron-builder",
+    "electron-packager",
+    "electron-squirrel-startup",
+    "node-notifier"
+  ]
 }
